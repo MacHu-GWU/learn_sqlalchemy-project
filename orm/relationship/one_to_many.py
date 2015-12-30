@@ -11,7 +11,7 @@ import random, string, time
 
 # initiate connection
 database = ":memory:"
-engine = create_engine('sqlite:///%s' % database, echo=False)
+engine = create_engine("sqlite:///%s" % database, echo=False)
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -71,5 +71,3 @@ def select_data():
         print(employee, employee.department)
         
 select_data()
-
-

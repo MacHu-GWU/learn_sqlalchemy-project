@@ -14,7 +14,7 @@ def rand_str(n=8):
 
 # initiate connection
 database = ":memory:"
-engine = create_engine('sqlite:///%s' % database, echo=False)
+engine = create_engine("sqlite:///%s" % database, echo=False)
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
 session = Session()
