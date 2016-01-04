@@ -34,14 +34,14 @@ import random, string, time
 def rand_str(n=8):
     return "".join(random.sample(string.ascii_letters, n))
 
-# initiate connection
+# --- Initiate connection ---
 database = ":memory:"
 engine = create_engine("sqlite:///%s" % database, echo=False)
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
 session = Session()
 
-# define one to many schema
+# --- Define one to many schema ---
 class Department(Base):
     """每一个Department里有多个Employee。
     """
