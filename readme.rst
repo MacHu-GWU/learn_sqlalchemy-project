@@ -1,5 +1,7 @@
 SQLAlchemy是 "一个知名企业级的持久化模式的，专为高效率和高性能的数据库访问设计的，改编成一个简单的Python域语言的完整套件"。其功能极其完整和强大, 学习曲线对新手可能不够平滑, 但绝对是最值得长期投入学习的库。
 
+此项目是对SQLAlchemy的一些学习笔记和使用案例代码。
+
 其他值得学习的ORM框架:
 
 - peewee: http://docs.peewee-orm.com/en/latest/index.html
