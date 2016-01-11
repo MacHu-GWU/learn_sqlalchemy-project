@@ -40,32 +40,7 @@ class User(Base):
         """
         super(User, self).__init__(*args, **kwargs)
         self.classname = self.__class__.__name__
-        
-    @property
-    def password_complexity(self):
-        """如果你不想要某个属性一直占用内存, 而仅仅是在需要的时候生成它, 那么
-        可以用@property装饰器, 将方法装饰为属性。
-        """
-        complexity = 1
-        for char in "`~!@#$%^&*()_-+={[}]|\:;"'<,>.?/':
-            if char in self.password:
-                complexity += 1
-                break
-        for char in string.ascii_uppercase:
-            if char in self.password:
-                complexity += 1
-                break
-        for char in string.ascii_lowercase:
-            if char in self.password:
-                complexity += 1
-                break
-        for char in string.digits:
-            if char in self.password:
-                complexity += 1
-                break
-        return complexity
 
 if __name__ == "__main__":
     user = User(id=1, account="Jack@gmail.com", password=rand_str(12))
-    print(user.classname)    
-    print(user.password_complexity)
+    print(user.classname)
