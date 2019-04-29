@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
@@ -15,12 +14,14 @@ import random, string, time
 def rand_str(n=8):
     return "".join(random.sample(string.ascii_letters, n))
 
+
 # --- Initiate connection ---
 database = ":memory:"
 engine = create_engine("sqlite:///%s" % database, echo=False)
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
 session = Session()
+
 
 # --- Define schema ---
 class Department(Base):
