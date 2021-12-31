@@ -10,6 +10,7 @@ Ref:
 
 """
 
+import pytest
 import sqlalchemy as sa
 import sqlalchemy.orm as orm
 from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method

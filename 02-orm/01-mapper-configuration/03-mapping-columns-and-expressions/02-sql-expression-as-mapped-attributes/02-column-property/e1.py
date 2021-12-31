@@ -80,4 +80,3 @@ with orm.Session(engine) as ses:
         ) AS anon_1 
     FROM user
     """
-    
