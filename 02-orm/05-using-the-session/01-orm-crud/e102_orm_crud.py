@@ -72,42 +72,62 @@ with orm.Session(engine) as ses:
     #
     stmt = sa.select(sa.func.distinct(User.name))
     users = ses.scalars(stmt).all()
-    print(users)
-# # orm query api returns dict instead of object
-# for user in session.execute(session.query(User).statement):
-#     dict(user)
-#
-# # **THERE's NO EASY/PERFORMANCE WAY TO CONVERT ORM object to dict**
-#
-# # --- update
-#
-# # atomic update method 1
-# # WARNING! don't construct user like this: ``user = User(id=1, name="Alice")``
-# # it is created out of session's scope, which is not atomic!
-# user = session.query(User).get(1)
-# user.name = "Alice"
-# session.commit()
-#
-# assert session.query(User).get(1).name == "Alice"
-#
-# # atomic update method 2
-# session.query(User).filter(User.id == 1).update({User.name: "Ana"})
-# session.commit()
-# assert session.query(User).get(1).name == "Ana"
-#
-# # update many
-# session.query(User).update({User.name: "Ana"})
-# session.commit()
-# for user in session.query(User):
-#     assert user.name == "Ana"
-#
-# # --- delete
-#
-# # delete one
-# session.query(User).filter(User.id == 1).delete()
-# session.commit()
-#
-# # delete many
-# assert session.query(User).count() == 2
-# assert session.query(User).delete()
-# assert session.query(User).count() == 0
+    assert users == ['Alice', 'Bob', 'Cathy']
+
+# --- UPDATE
+
+# atomic update method 1
+# WARNING! don't construct user like this: ``user = User(id=1, name="Alice")``
+# it is created out of session's scope, which is not atomic!
+with orm.Session(engine) as ses:
+    user = ses.get(User, 1)
+    user.name = "Alice1"
+    ses.commit()
+
+with orm.Session(engine) as ses:
+    assert ses.get(User, 1).name == "Alice1"
+
+# atomic update method 2
+with orm.Session(engine) as ses:
+    stmt = sa.update(User).where(User.id == 1).values(name="Alice2")
+    ses.execute(stmt)
+    ses.commit()
+
+with orm.Session(engine) as ses:
+    assert ses.get(User, 1).name == "Alice2"
+
+# atomic update method 3
+# WARNING! don't do this! this is not multi thread safe:
+# user = ses.get(User, 1)
+# user.value += 1
+# ses.commit()
+with orm.Session(engine) as ses:
+    before_value = ses.get(User, 1).value
+    stmt = sa.update(User).where(User.id == 1).values(value=User.value + 1)
+    res = ses.execute(stmt)
+    assert res.rowcount == 1
+    ses.commit()
+    after_value = ses.get(User, 1).value
+    assert (after_value - before_value) == 1
+
+# --- DELETE
+# delete one
+with orm.Session(engine) as ses:
+    ses.add(User(id=10))
+    ses.commit()
+
+    user = ses.get(User, 10)
+    res = ses.delete(user)
+    ses.commit()
+
+    assert ses.get(User, 10) is None
+
+# delete many
+with orm.Session(engine) as ses:
+    ses.add_all([User(id=11), User(id=12), User(id=13)])
+    ses.commit()
+
+    stmt = sa.delete(User).where(User.id >= 11)
+    res = ses.execute(stmt)
+    assert res.rowcount == 3
+    ses.commit()

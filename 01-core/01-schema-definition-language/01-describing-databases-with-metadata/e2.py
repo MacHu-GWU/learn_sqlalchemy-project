@@ -3,14 +3,14 @@
 """
 Reference:
 
-- https://docs.sqlalchemy.org/en/14/core/metadata.html
+- https://docs.sqlalchemy.org/en/latest/core/metadata.html
 """
 
 import typing
 import sqlalchemy as sa
 from rich import print
 
-# define metadata store
+# define metadata stor
 metadata = sa.MetaData()
 
 # define a table
