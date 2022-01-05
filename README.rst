@@ -8,7 +8,7 @@ Sqlalchemy 学习笔记
 ------------------------------------------------------------------------------
 该项目是我个人的 Sqlalchemy 学习笔记. 以后凡是有用 Python 操纵关系数据库以及用 ORM 数据建模的项目, 都可以从这个文档中找到代码片段和最佳实践.
 
-- `Sqlalchemy Core API 文档解析 <01-core/README.rst>`
+- `Sqlalchemy Core API 文档解析 <01-core/README.rst>`_
 
 
 
