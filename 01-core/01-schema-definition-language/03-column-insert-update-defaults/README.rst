@@ -1,6 +1,7 @@
 Column INSERT/UPDATE Defaults
 ==============================================================================
-Scalar Default:
+
+**Scalar Default**:
 
 .. code-block:: python
 
@@ -8,7 +9,7 @@ Scalar Default:
         Column("somecolumn", Integer, default=12)
     )
 
-Python-Executed Functions:
+**Python-Executed Functions**:
 
 .. code-block:: python
 
@@ -34,7 +35,7 @@ Python-Executed Functions:
         Column('last_updated', DateTime, onupdate=datetime.datetime.now),
     )
 
-Context-Sensitive Default Functions:
+**Context-Sensitive Default Functions**:
 
 context 是 Sqlalchemy 独有概念, 是在执行一个 SQL 的时候的上下文数据.
 
@@ -48,7 +49,7 @@ context 是 Sqlalchemy 独有概念, 是在执行一个 SQL 的时候的上下�
         Column('counter_plus_twelve', Integer, default=mydefault, onupdate=mydefault)
     )
 
-Client-Invoked SQL Expressions:
+**Client-Invoked SQL Expressions**:
 
 默认值可以来自于数据库上某个表中的数据或是对其进行的计算.
 
@@ -67,7 +68,7 @@ Client-Invoked SQL Expressions:
         Column('last_modified', DateTime, onupdate=func.utc_timestamp())
     )
 
-Server-invoked DDL-Explicit Default Expressions:
+**Server-invoked DDL-Explicit Default Expressions**:
 
 默认值可以来自于 服务端 DDL 语言的计算结果, 比如使用数据库系统时间而不是 SQL 客户端的本机时间.
 
@@ -87,7 +88,7 @@ Server-invoked DDL-Explicit Default Expressions:
         index_value integer default 0
     )
 
-Marking Implicitly Generated Values, timestamps, and Triggered Columns:
+**Marking Implicitly Generated Values, timestamps, and Triggered Columns**:
 
 有些时候默认值在数据库端已经设置了, 计算逻辑和环境都在数据库端部署好了. 此时 Sqlalchemy 可以用 ``FetchedValue`` Mark, 表示这个默认值数据库配置好了, Python 程序你不用管
 

@@ -6,12 +6,12 @@
 先执行预定义的 ``__init__()`` 方法, 再执行用户自定义的代码. 具体实现请看例子:
 """
 
-from sqlalchemy.ext.declarative import declarative_base
+import random, string
 from sqlalchemy import create_engine
 from sqlalchemy import Column
 from sqlalchemy import Integer, String
+from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
-import random, string
 
 
 def rand_str(n=8):

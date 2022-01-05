@@ -1,5 +1,19 @@
 # -*- coding: utf-8 -*-
 
+"""
+知识点:
+
+1. 定义 Metadata
+2. 定义 Table
+3. 访问 Table 的实例
+4. 创建 Engine
+5. create, drop Table
+
+Reference:
+
+- https://docs.sqlalchemy.org/en/14/core/metadata.html
+"""
+
 import sqlalchemy as sa
 
 # Metadata is a container object keeps together many different features of a database (or multiple databases) being described.

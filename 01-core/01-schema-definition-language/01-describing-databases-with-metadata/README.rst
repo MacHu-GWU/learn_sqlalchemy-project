@@ -15,7 +15,6 @@ Ref:
 
 Specifying the Schema Name
 ------------------------------------------------------------------------------
-
 很多数据库中都有 Schema 的概念. 它是一个 Name Space 的概念, 相当于一个实体 Database 下的虚拟数据库. 不同 Schema 下的 Table 的名字可以相同. 你可以在用 ``schema`` parameter 来定义 Schema name.
 
 .. code-block:: python
@@ -44,7 +43,6 @@ Specifying a Default Schema Name with MetaData
         Column('id', Integer, primary_key=True),
         Column('value', String(100), nullable=False),
     )
-
 
 Setting a Default Schema for New Connections
 ------------------------------------------------------------------------------

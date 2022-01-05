@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 
 """
+知识点:
+
+1. 访问 Table
+2. 访问 Column
+
 Reference:
 
 - https://docs.sqlalchemy.org/en/latest/core/metadata.html
