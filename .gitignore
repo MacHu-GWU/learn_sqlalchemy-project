@@ -1,8 +1,6 @@
 # User Settings
-sqlalchemy_mate_venv/
-sqlalchemy_mate.egg-info/
-sqlalchemy_mate-*/
-.db.json
+learn_sqlalchemy.egg-info/
+tmp/
 
 
 # Byte-compiled / optimized / DLL files
@@ -71,7 +69,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+docs/build/
 
 # PyBuilder
 target/

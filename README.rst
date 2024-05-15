@@ -1,8 +1,56 @@
-Sqlalchemy 学习笔记
+
+.. .. image:: https://readthedocs.org/projects/learn-sqlalchemy/badge/?version=latest
+    :target: https://learn-sqlalchemy.readthedocs.io/en/latest/
+    :alt: Documentation Status
+
+.. .. image:: https://github.com/MacHu-GWU/learn_sqlalchemy-project/workflows/CI/badge.svg
+    :target: https://github.com/MacHu-GWU/learn_sqlalchemy-project/actions?query=workflow:CI
+
+.. .. image:: https://codecov.io/gh/MacHu-GWU/learn_sqlalchemy-project/branch/main/graph/badge.svg
+    :target: https://codecov.io/gh/MacHu-GWU/learn_sqlalchemy-project
+
+.. .. image:: https://img.shields.io/pypi/v/learn-sqlalchemy.svg
+    :target: https://pypi.python.org/pypi/learn-sqlalchemy
+
+.. .. image:: https://img.shields.io/pypi/l/learn-sqlalchemy.svg
+    :target: https://pypi.python.org/pypi/learn-sqlalchemy
+
+.. .. image:: https://img.shields.io/pypi/pyversions/learn-sqlalchemy.svg
+    :target: https://pypi.python.org/pypi/learn-sqlalchemy
+
+.. image:: https://img.shields.io/badge/Release_History!--None.svg?style=social
+    :target: https://github.com/MacHu-GWU/learn_sqlalchemy-project/blob/main/release-history.rst
+
+.. image:: https://img.shields.io/badge/STAR_Me_on_GitHub!--None.svg?style=social
+    :target: https://github.com/MacHu-GWU/learn_sqlalchemy-project
+
+------
+
+.. .. image:: https://img.shields.io/badge/Link-Document-blue.svg
+    :target: https://learn-sqlalchemy.readthedocs.io/en/latest/
+
+.. .. image:: https://img.shields.io/badge/Link-API-blue.svg
+    :target: https://learn-sqlalchemy.readthedocs.io/en/latest/py-modindex.html
+
+.. .. image:: https://img.shields.io/badge/Link-Install-blue.svg
+    :target: `install`_
+
+.. image:: https://img.shields.io/badge/Link-GitHub-blue.svg
+    :target: https://github.com/MacHu-GWU/learn_sqlalchemy-project
+
+.. image:: https://img.shields.io/badge/Link-Submit_Issue-blue.svg
+    :target: https://github.com/MacHu-GWU/learn_sqlalchemy-project/issues
+
+.. image:: https://img.shields.io/badge/Link-Request_Feature-blue.svg
+    :target: https://github.com/MacHu-GWU/learn_sqlalchemy-project/issues
+
+.. image:: https://img.shields.io/badge/Link-Download-blue.svg
+    :target: https://pypi.org/pypi/learn-sqlalchemy#files
+
+
+Welcome to ``learn_sqlalchemy`` Documentation
 ==============================================================================
 
-.. contents::
-    :local:
 
 项目简介
 ------------------------------------------------------------------------------
@@ -18,30 +66,28 @@ Sqlalchemy 文档学习. Sqlalchemy 的官方文档有两大块, 分别是基于
 - `Sqlalchemy ORM 最佳实践 <03-best-practice>`_
 
 
-
 Sqlalchemy 介绍
 ------------------------------------------------------------------------------
+SQLAlchemy 的中文简介: "一个知名企业级的持久化模式的，专为高效率和高性能的数据库访问设计的，改编成一个简单的Python域语言的完整套件". 其功能极其完整和强大, 学习曲线对新手可能不够平滑, 但绝对是最值得长期投入学习的库.
 
-SQLAlchemy 的中文简介: "一个知名企业级的持久化模式的，专为高效率和高性能的数据库访问设计的，改编成一个简单的Python域语言的完整套件". 其功能极其完整和强大, 学习曲线对新手可能不够平滑, 但绝对是最值得长期投入学习的库. 
-
-此项目是对SQLAlchemy的一些学习笔记和使用案例代码. 
+此项目是对SQLAlchemy的一些学习笔记和使用案例代码.
 
 其他值得学习的ORM框架:
 
 - peewee: http://docs.peewee-orm.com/en/latest/index.html
     - 优点:
         - Django式的API, 使其易用.
-        - 轻量实现, 很容易和任意web框架集成. 
+        - 轻量实现, 很容易和任意web框架集成.
     - 缺点:
-        - 不支持自动化 schema 迁移. 
-        - 多对多查询写起来不直观. 
+        - 不支持自动化 schema 迁移.
+        - 多对多查询写起来不直观.
 
 - django ORM: django框架自带的ORM, https://docs.djangoproject.com/en/1.9/topics/db/models/
     - 优点:
-        - 易用, 学习曲线短. 
-        - 和Django紧密集合, 用Django时使用约定俗成的方法去操作数据库. 
+        - 易用, 学习曲线短.
+        - 和Django紧密集合, 用Django时使用约定俗成的方法去操作数据库.
     - 缺点:
-        - 不好处理复杂的查询, 强制开发者回到原生SQL. 
+        - 不好处理复杂的查询, 强制开发者回到原生SQL.
         - 紧密和Django集成, 使得在Django环境外很难使用.
 
 - ponyorm: https://ponyorm.org/
@@ -50,7 +96,6 @@ SQLAlchemy 的中文简介: "一个知名企业级的持久化模式的，专为
 
 测试数据库环境
 ------------------------------------------------------------------------------
-
 推荐使用两个数据库, sqlite 和 postgresql.
 
 - sqlite 可以直接用 ``engine = sqlalchemy.create_engine(":memory:")`` 建立内存数据库
@@ -59,7 +104,6 @@ SQLAlchemy 的中文简介: "一个知名企业级的持久化模式的，专为
 
 engine, connection, session
 ------------------------------------------------------------------------------
-
 - engine 只是定义了引擎的一个内存数据结构, 比如: dbapi 版本, 以及对应的 Python 库. host, port, database, username, password 等等, **engine 本身不会真正地跟数据库建立连接**
 - connection 是逻辑上跟数据库的连接, 同一时间能同时保持的数据库的连接是有限的. 和数据库建立真正的连接非常消耗资源, 需要身份验证, 多次握手确认才能达成.
 - session 是 ORM 框架中的上下文环境, 在一个 session 中的任何数据修改都会被记录在内存中. session 是更加轻量级的对 connection 的再利用.
@@ -78,13 +122,11 @@ Reference:
 
 一些有用的 API
 ------------------------------------------------------------------------------
-
 有一些 API 非常有用, 大多来自于这篇文档 https://docs.sqlalchemy.org/en/latest/orm/query.html
 
 
 Core API vs ORM API
 ------------------------------------------------------------------------------
-
 Sqlachemy 提供了两套 API 用于跟数据库进行会话, 增删查改.
 
 1. Core API 是 Sqlachemy 较为底层的 API. 直接操作 generic (python 原生) 对象, 例如: tuple, list, dict. API 风格是函数式的编程. 例如插入一个 User, ``insert(table=users, data={"id": 1, "name": "alice"})`` (注意, 这里是伪代码)
@@ -93,6 +135,4 @@ Sqlachemy 提供了两套 API 用于跟数据库进行会话, 增删查改.
 
 Sqlachemy 2.0
 ------------------------------------------------------------------------------
-
 Sqlachemy 是一个有 15 年历史的框架, 为了兼容性, 必须支持很多很老的特性以及风格, 没法全面拥抱 Python3.6 以后带来的 type hint. 并且有很多魔法函数太过强大, 设计有些不合理. Sqlachemy 社区决定使用 1.3 版本和 1.4 版本进行过渡. 1.3 版本开始逐渐引入 2.0 风格的 API, 而 1.4 版本则全面实装了 2.0 版本的 API 同时保持之前的 API 的兼容性. 在 2.0 发布后就会全面删除旧的 API. 所以 1.4 非常适合作为一个过渡版本, 在 1.4 版本中使用 2.0 风格的 API. 所以我们就直接学习 1.4 版本的文档即可.
-

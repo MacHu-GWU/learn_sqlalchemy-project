@@ -2,5 +2,5 @@
 asn1crypto==1.4.0
 scramp==1.4.1
 pg8000==1.23.0
-SQLAlchemy==2.0.30
-sqlalchemy_mate==2.0.0.0
+SQLAlchemy==1.4.28
+sqlalchemy_mate==1.4.28.3
