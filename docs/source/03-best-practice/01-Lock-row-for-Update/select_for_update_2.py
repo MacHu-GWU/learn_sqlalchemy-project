@@ -23,14 +23,14 @@ engine = sam.EngineCreator(
 ).create_postgresql_pg8000()
 Base.metadata.create_all(engine)
 
-
+# 在一个 transaction 中尝试获取锁, 当然由于另一个程序已经在运行了, 所以肯定会失败.
 with orm.Session(engine) as ses:
-    job = ses.get(Job, "job-1")
-    print(f"{job.id = }, {job.value = }")  # this will print
+    with ses.begin():
+        stmt = sa.select(Job).where(Job.id == "job-1").with_for_update(nowait=True)
+        job = ses.execute(stmt).scalar_one()
+        print(f"before: {job.id = }, {job.value = }")  # this will print
+        job.value = 1
+        ses.commit()  # this will not work
 
-    job.value = 1
-    ses.commit()  # this will not work until the lock is released
-
-with orm.Session(engine) as ses:
     job = ses.get(Job, "job-1")
-    print(f"{job.id = }, {job.value = }")
+    print(f"after: {job.id = }, {job.value = }")
