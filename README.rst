@@ -1,5 +1,5 @@
 
-.. .. image:: https://readthedocs.org/projects/learn-sqlalchemy/badge/?version=latest
+.. image:: https://readthedocs.org/projects/learn-sqlalchemy/badge/?version=latest
     :target: https://learn-sqlalchemy.readthedocs.io/en/latest/
     :alt: Documentation Status
 
