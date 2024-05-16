@@ -26,6 +26,8 @@ How it Work
 1. 用 ``with orm.Session().begin():`` 或者类似的语法先创建一个 Transaction 的 context manager.
 2. 所有要竞争锁的人用 ``select(...).where(...).with_for_update(nowait=True)`` 语法获取锁. (建议用 no wait, 如果被锁住了则立刻抛出异常, 这适用于大多数情况).
 
+总结一下. ``SELECT ... FOR UPDATE`` 是一种悲观锁的做法. 也就是手动将 row 锁住, 然后再开始干活.
+
 
 Sample Code
 ------------------------------------------------------------------------------
@@ -42,4 +44,3 @@ Sample Code
     .. literalinclude:: ./select_for_update_2.py
        :language: python
        :linenos:
-
